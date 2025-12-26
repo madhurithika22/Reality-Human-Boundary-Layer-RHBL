@@ -1,3 +1,10 @@
+import sys
+import os
+
+# Get the project root directory
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.append(project_root)
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -5,8 +12,8 @@ import cv2
 import threading
 import time
 import shutil
-from logic import SentinelEngine
-from database import save_log
+from .logic import SentinelEngine
+from .database import save_log
 import numpy as np
 
 app = FastAPI()
@@ -22,7 +29,7 @@ app.add_middleware(
 engine = SentinelEngine()
 
 # GLOBAL STATE
-VIDEO_SOURCE = 1  # Default Camera Index
+VIDEO_SOURCE = 0  # Default Camera Index
 camera = None
 
 current_stats = {
