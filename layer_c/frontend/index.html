@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RHBL – Reality Consistency Validator</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <h1>Reality–Human Boundary Layer</h1>
+    <p>Layer C · Reality Consistency Validation Engine</p>
+  </header>
+
+  <main class="container">
+
+    <!-- INPUT PANEL -->
+    <section class="panel">
+      <div class="panel-title">Input</div>
+
+      <div class="toggle">
+        <label>
+          <input type="checkbox" id="demoToggle" />
+          Demo Mode (Fake vs Real)
+        </label>
+      </div>
+
+      <label for="videoInput">Upload Video (MP4)</label>
+      <input type="file" id="videoInput" accept="video/mp4" />
+
+      <button onclick="analyzeVideo()">Validate Reality</button>
+      <hr>
+
+      <div class="panel-title">Live (Experimental)</div>
+      <p style="font-size:12px;color:#94a3b8;margin-top:6px;">
+        Camera preview appears after clicking "Start Live Feed"
+      </p>
+
+      <button onclick="startLive()">Start Live Feed</button>
+      <button onclick="stopLive()">Stop Live Feed</button>
+
+      <video id="liveVideo" autoplay muted playsinline></video>
+      <div id="status" class="status"></div>
+    </section>
+
+    <!-- RESULT PANEL -->
+    <section class="panel">
+      <div class="panel-title">Trust Assessment</div>
+
+      <!-- Gauge -->
+      <div class="gauge">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="trustGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#22c55e"/>
+              <stop offset="100%" stop-color="#4ade80"/>
+            </linearGradient>
+          </defs>
+
+          <circle cx="100" cy="100" r="80"></circle>
+          <circle id="progressCircle" cx="100" cy="100" r="80"></circle>
+        </svg>
+
+        <div class="score">
+          <div id="scoreText">--</div>
+          <span>/100</span>
+        </div>
+      </div>
+
+      <div id="confidence" class="confidence">Confidence: —</div>
+
+      <!-- Layer Breakdown -->
+      <div class="layers">
+        <h3>Layer-wise Consistency</h3>
+
+        <div class="layer">
+          <span>Physics</span>
+          <div class="bar"><div id="physicsBar"></div></div>
+          <span id="physicsScore">--</span>
+        </div>
+
+        <div class="layer">
+          <span>Temporal</span>
+          <div class="bar"><div id="temporalBar"></div></div>
+          <span id="temporalScore">--</span>
+        </div>
+
+        <div class="layer">
+          <span>Biological</span>
+          <div class="bar"><div id="biologyBar"></div></div>
+          <span id="biologyScore">--</span>
+        </div>
+      </div>
+
+      <!-- Heatmap -->
+      <div class="heatmap">
+        <h3>Frame-Level Violations</h3>
+        <div id="heatmapBar" class="heatmap-bar"></div>
+      </div>
+
+      <!-- Reasoning -->
+      <div class="reasoning">
+        <h3>Reasoning Trace</h3>
+        <ul id="violationsList"></ul>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
